@@ -11,7 +11,7 @@ Fillit is about tetriminos (tetris pieces), they look like this :
 #...  ....  ....  ....  #...
 ....  ....  ....  ....  #...
 ```
-The final solution have to be a square grid containin all the tetriminos.
+The final solution have to be a square grid containing all the tetriminos.
 We had to make an algorithm to find how to position every tetriminos to make them fill
 in the smallest square possible.
 
