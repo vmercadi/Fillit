@@ -1,3 +1,5 @@
+//COMPILE WITH : gcc gene.c
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -78,7 +80,7 @@ int         check_piece(char *s)
 //-1 = invalid
 //0  = wtf
 //1 = valid
-int generate_piece(int validity)
+int generate_piece(int validity, int ok)
 {
     char *str[5];
     char piece[100];
@@ -91,7 +93,10 @@ int generate_piece(int validity)
     str[1] = strdup("....\n");
     str[2] = strdup("....\n");
     str[3] = strdup("....\n");
-    str[4] = strdup("\n");
+    if (ok == 0)
+        str[4] = strdup("\n");
+    else
+        str[4] = strdup("");
 
     while(count_hashs(str) < 4)
     {
@@ -133,17 +138,17 @@ int main(int ac, char **av)
     if (strcmp(av[1], "invalid") == 0)
     {
         while(results < max)
-            results += generate_piece(-1);
+            results += generate_piece(-1, ((results == max - 1) ? 1 : 0));
     }
     if (strcmp(av[1], "wtf") == 0)
     {
         while(results < max)
-            results += generate_piece(0);
+            results += generate_piece(0, ((results == max - 1) ? 1 : 0));
     }
     if (strcmp(av[1], "valid") == 0)
     {
         while(results < max)
-            results += generate_piece(1);
+            results += generate_piece(1, ((results == max - 1) ? 1 : 0));
     }
 
     return (0);
